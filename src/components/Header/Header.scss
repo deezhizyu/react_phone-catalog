@@ -2,10 +2,24 @@
 @use 'styles/vars';
 
 .header {
+  position: relative;
+
   box-shadow: 0 1px 0 0 vars.$color-elements;
 
   display: flex;
   justify-content: space-between;
+
+  &__caret {
+    position: absolute;
+    height: 3px;
+    bottom: 0;
+
+    background-color: vars.$color-primary;
+
+    transform-origin: bottom;
+
+    transition: opacity vars.$transition-time;
+  }
 
   &__left {
     height: 100%;
@@ -66,16 +80,6 @@
       padding: 16px;
     }
 
-    &--selected {
-      padding-bottom: 21px;
-
-      border-bottom: 3px solid vars.$color-primary;
-
-      @include mixins.media-tablet {
-        padding-bottom: 13px;
-      }
-    }
-
     &-container {
       position: relative;
 
@@ -101,9 +105,28 @@
       background-color: #eb5757;
       border: 1px solid #ffffff;
 
-      font-size: 9px;
-      font-weight: vars.$font-weight-semi-bold;
-      color: white;
+      animation: cubic-bezier(0.7, -0.67, 0.16, 1.67) vars.$transition-time
+        forwards count-text-appear;
+
+      @keyframes count-text-appear {
+        0% {
+          transform: translateY(0px);
+        }
+
+        20% {
+          transform: translateY(-3px);
+        }
+
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      &-text {
+        font-size: 9px;
+        font-weight: vars.$font-weight-semi-bold;
+        color: white;
+      }
     }
   }
 }
