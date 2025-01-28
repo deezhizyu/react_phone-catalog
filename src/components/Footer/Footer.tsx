@@ -1,19 +1,37 @@
+import { scrollToTop } from '../../utils/scrollToTop';
 import './Footer.scss';
 
-export const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo(0, 0);
-  };
+const LINKS = [
+  {
+    title: 'Github',
+    url: 'https://github.com/deezhizyu/react_phone-catalog/',
+  },
+  {
+    title: 'Contacts',
+    url: 'https://github.com/deezhizyu',
+  },
+  {
+    title: 'Rights',
+    url: 'https://github.com/deezhizyu',
+  },
+];
 
+export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__container">
         <img src="logo.svg" alt="Logo" className="footer__logo" />
 
         <div className="footer__links">
-          <a className="footer__links-link text-button">Github</a>
-          <a className="footer__links-link text-button">Contacts</a>
-          <a className="footer__links-link text-button">Rights</a>
+          {LINKS.map(link => (
+            <a
+              href={link.url}
+              target="_"
+              className="footer__links-link text-button"
+            >
+              {link.title}
+            </a>
+          ))}
         </div>
 
         <button

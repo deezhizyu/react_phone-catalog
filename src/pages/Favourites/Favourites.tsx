@@ -31,7 +31,7 @@ export const Favourites = () => {
 
   return (
     <div className="favourites">
-      <Breadcrumbs paths={['Favourites']} />
+      <Breadcrumbs paths={[{ name: 'Favourites' }]} />
 
       <h1 className="favourites__title">Favourites</h1>
       {!!products.length ? (
@@ -41,7 +41,12 @@ export const Favourites = () => {
           </p>
           <div className="favourites__container">
             {products.map(product => (
-              <ProductCard key={product.id} product={product} wide={true} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                wide={true}
+                favouriteCallback={fetchProducts}
+              />
             ))}
           </div>
         </>
